@@ -1,7 +1,7 @@
 # вариант 1
 def repeat_me1(func):
     def wrapper(text, count):
-        for i in range(count):
+        for _ in range(count):
             func(text)
         print("finished 1 test")
 
@@ -22,7 +22,7 @@ def repeat_me2(**kwargs):
 
     def decoration(fun):
         def wrapper(text):
-            for i in range(count):
+            for _ in range(count):
                 fun(text)
             print("finished 2 test")
 
