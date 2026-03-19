@@ -1,0 +1,75 @@
+к бд удалось подключитьcя только через впн, не стал особо копать, но выглядит очень странно
+https://disk.yandex.ru/d/dQP03lJKUmoqrA
+
+
+
+INSERT INTO students (name, second_name)
+VALUES ('TotSamiy', 'TogoSamogo');
+
+
+INSERT INTO books (title, taken_by_student_id)
+VALUES ('Та самая книга том 1', 22464);
+
+
+INSERT INTO books (title, taken_by_student_id)
+VALUES ('Та самая книга том 2', 22464);
+
+
+INSERT INTO `groups` (title, start_date, end_date)
+VALUES ('Та самая Группа', 'прикольная дата начала', 'еще интереснее дата конца');
+
+
+update students set group_id=22137 where id=22464;
+
+
+INSERT INTO subjects (title)
+VALUES ('Тот самый лучший предмет');
+
+
+INSERT INTO subjects (title)
+VALUES ('Тот самый худший предмет');
+
+
+INSERT INTO lessons  (title, subject_id)
+VALUES
+('занятие 1 для лучшего предмета', 14153),
+('занятие 2 для лучшего предмета', 14153),
+('занятие 1 для худшего предмета', 14154),
+('занятие 2 для худшего предмета', 14154);
+
+
+INSERT INTO marks  (value, lesson_id, student_id)
+VALUES
+('ну вроде пойдет', 14153, 22464),
+('ни кто не говорил что оценка должна быть int :)', 14153, 22464),
+('2', 14154, 22464),
+('1', 14154, 22464);
+
+
+select m.value
+from students s
+inner join marks m
+on s.id = m.student_id
+where s.name = 'TotSamiy';
+
+
+select title
+from students s
+inner join books b
+on s.id = b.taken_by_student_id
+where s.name = 'TotSamiy';
+
+
+select s.second_name, s.name, g.title, b.title, m.value, l.title, s2.title
+from students s
+inner join books b
+on s.id = b.taken_by_student_id
+inner join marks m
+on s.id = m.student_id
+INNER join `groups` g
+on s.group_id = g.id
+INNER join lessons l
+on m.lesson_id = l.id
+INNER join subjects s2
+on l.subject_id = s2.id
+where s.name = 'TotSamiy';
