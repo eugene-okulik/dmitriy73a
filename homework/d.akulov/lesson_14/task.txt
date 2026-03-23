@@ -50,14 +50,14 @@ select m.value
 from students s
 inner join marks m
 on s.id = m.student_id
-where s.name = 'TotSamiy';
+where s.id = 22464;
 
 
 select title
 from students s
 inner join books b
 on s.id = b.taken_by_student_id
-where s.name = 'TotSamiy';
+where s.id = 22464;
 
 
 select s.second_name, s.name, g.title, b.title, m.value, l.title, s2.title
@@ -72,4 +72,4 @@ INNER join lessons l
 on m.lesson_id = l.id
 INNER join subjects s2
 on l.subject_id = s2.id
-where s.name = 'TotSamiy';
+where s.id = 22464;
