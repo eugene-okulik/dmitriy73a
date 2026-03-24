@@ -17,7 +17,8 @@ cursor = db.cursor(dictionary=True)
 
 base_path = os.path.dirname(__file__)
 path_file = os.path.dirname(os.path.dirname(os.path.join(base_path)))
-j_path = os.path.join(path_file, "eugene_okulik", "Lesson_16", "hw_data", "data.csv")
+j_path = os.path.join(path_file, "eugene_okulik", "Lesson_16",
+                      "hw_data", "data.csv")
 
 with open(j_path, newline="") as file:
     file_hw = csv.DictReader(file)
@@ -39,7 +40,8 @@ with open(j_path, newline="") as file:
         INNER JOIN `groups` g ON s.group_id = g.id
         INNER JOIN lessons l ON m.lesson_id = l.id
         INNER JOIN subjects s2 ON l.subject_id = s2.id
-        WHERE s.name = '%s' and s.second_name = '%s' and g.title = '%s' 
+        WHERE s.name = '%s' and s.second_name = '%s' 
+        and g.title = '%s' 
         and b.title = '%s' and s2.title = '%s'
         and l.title = '%s' and m.value = '%s';
         """ % (i["name"], i["second_name"], i["group_title"],
@@ -48,6 +50,6 @@ with open(j_path, newline="") as file:
 
         if not cursor.fetchall():
             print(i["name"], i["second_name"], "в базе не найден. "
-                  f"Строка файла", count)
+                                               "Строка файла", count)
 
 db.close()
