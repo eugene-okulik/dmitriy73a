@@ -39,12 +39,15 @@ with open(j_path, newline="") as file:
         INNER JOIN `groups` g ON s.group_id = g.id
         INNER JOIN lessons l ON m.lesson_id = l.id
         INNER JOIN subjects s2 ON l.subject_id = s2.id
-        WHERE s.name = '%s' and s.second_name = '%s' and g.title = '%s' and b.title = '%s' and s2.title = '%s'
+        WHERE s.name = '%s' and s.second_name = '%s' and g.title = '%s' 
+        and b.title = '%s' and s2.title = '%s'
         and l.title = '%s' and m.value = '%s';
         """ % (i["name"], i["second_name"], i["group_title"],
-               i["book_title"], i["subject_title"], i["lesson_title"], i["mark_value"]))
+               i["book_title"], i["subject_title"], i["lesson_title"],
+               i["mark_value"]))
 
         if not cursor.fetchall():
-            print(f"{i["name"]} {i["second_name"]} в базе не найден. Строка файла {count}")
+            print(f"{i["name"]} {i["second_name"]} в базе не найден. "
+                  f"Строка файла {count}")
 
 db.close()
