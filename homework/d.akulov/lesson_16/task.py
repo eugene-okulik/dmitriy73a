@@ -47,7 +47,7 @@ with open(j_path, newline="") as file:
                i["mark_value"]))
 
         if not cursor.fetchall():
-            print(f"{i["name"]} {i["second_name"]} в базе не найден. "
-                  f"Строка файла {count}")
+            print(i["name"], i["second_name"], "в базе не найден. "
+                  f"Строка файла", count)
 
 db.close()
