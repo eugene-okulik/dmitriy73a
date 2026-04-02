@@ -83,7 +83,7 @@ def delete_test():
     delete_obj_2 = delete_object(obj.json()["id"])
     try:
         assert delete_obj.status_code == 200, "неверный статус код"
-        assert delete_obj.text == f"Object with id {obj.json()["id"]} successfully deleted"
+        assert delete_obj.text == "Object with id %s successfully deleted" % obj.json()["id"]
         assert delete_obj_2.status_code == 404, "неверный статус код при повторном удалении"
     except AssertionError as e:
         print(Fore.RED + "В функции delete_test, тестируем метод delete, ошибка", e)
