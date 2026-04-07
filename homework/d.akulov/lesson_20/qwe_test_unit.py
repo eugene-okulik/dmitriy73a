@@ -11,12 +11,12 @@ class TestApi(unittest.TestCase):
     def setUp(self):
         self.post = requests.post("http://objapi.course.qa-practice.com/object",
                                   json={'data': {'color': 'qqq', 'size': 'zxc'}, 'name': 'test666'})
-        print(f'\nPost created: {self.post.json()["id"]}')
+        print(f'\nPost created: {self.post.json()['id']}')
 
     # постусловие, удаляем пользователя
     def tearDown(self):
-        requests.delete(f"http://objapi.course.qa-practice.com/object/{self.post.json()["id"]}")
-        print(f'Post deleted: {self.post.json()["id"]}')
+        requests.delete(f"http://objapi.course.qa-practice.com/object/{self.post.json()['id']}")
+        print(f"Post deleted: {self.post.json()['id']}")
 
     def test_post(self):
         self.assertEqual(self.post.status_code, 200)
