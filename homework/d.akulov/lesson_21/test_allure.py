@@ -70,11 +70,11 @@ def test_delete():
         delete_obj = requests.delete(f"http://objapi.course.qa-practice.com/object/{obj.json()['id']}")
     with allure.step(f"deleting again object id {obj.json()['id']}"):
         delete_obj_2 = requests.delete(f"http://objapi.course.qa-practice.com/object/{obj.json()['id']}")
-    with allure.step(f"check responce code is 200"):
+    with allure.step("check responce code is 200"):
         assert delete_obj.status_code == 200, "неверный статус код"
-    with allure.step(f"check responce text"):
+    with allure.step("check responce text"):
         assert delete_obj.text == f"Object with id {obj.json()['id']} successfully deleted"
-    with allure.step(f"check responce code is 404 deleting again object"):
+    with allure.step("check responce code is 404 deleting again object"):
         assert delete_obj_2.status_code == 404, "неверный статус код при повторном удалении"
 
 # скрины
