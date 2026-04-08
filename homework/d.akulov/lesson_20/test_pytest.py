@@ -3,7 +3,7 @@ import pytest
 
 
 @pytest.fixture()
-def new_post():
+def create_and_delete_fixture():
     req = requests.post("http://objapi.course.qa-practice.com/object",
                         json={'data': {'color': 'qqq', 'size': 'zxc'}, 'name': 'test666'})
     yield req
@@ -24,9 +24,9 @@ def func_message():
     print("after test")
 
 
-def test_one_object(func_message, session_message, new_post):
-    req = requests.get(f"http://objapi.course.qa-practice.com/object/{new_post.json()['id']}")
-    assert req.json()["id"] == new_post.json()["id"]
+def test_one_object(func_message, session_message, create_and_delete_fixture):
+    req = requests.get(f"http://objapi.course.qa-practice.com/object/{create_and_delete_fixture.json()['id']}")
+    assert req.json()["id"] == create_and_delete_fixture.json()["id"]
 
 
 @pytest.mark.skip("просто скипаем для теста")
@@ -50,8 +50,8 @@ def test_post(func_message, obj):
 
 
 @pytest.mark.critical
-def test_put(func_message, new_post):
-    obj = requests.put(f"http://objapi.course.qa-practice.com/object/{new_post.json()['id']}",
+def test_put(func_message, create_and_delete_fixture):
+    obj = requests.put(f"http://objapi.course.qa-practice.com/object/{create_and_delete_fixture.json()['id']}",
                        json={'data': {'color': 'test i am', 'size': 'big', 'еще что то': 'qwerty'}, 'name': 'test777'})
     assert obj.status_code == 200, "неверный статус код"
     assert type(obj.json()["name"]) == str, "поле name содержит не str"
@@ -63,8 +63,8 @@ def test_put(func_message, new_post):
 
 
 @pytest.mark.medium
-def test_patch(func_message, new_post):
-    obj = requests.patch(f"http://objapi.course.qa-practice.com/object/{new_post.json()['id']}",
+def test_patch(func_message, create_and_delete_fixture):
+    obj = requests.patch(f"http://objapi.course.qa-practice.com/object/{create_and_delete_fixture.json()['id']}",
                          json={'name': 'test888'})
     assert obj.status_code == 200, "неверный статус код"
     assert type(obj.json()["name"]) == str, "поле name содержит не str"
@@ -73,3 +73,13 @@ def test_patch(func_message, new_post):
     assert obj.json()["name"] == "test888", "поле name содержит не те данные что отправили"
     assert obj.json()["data"] == {'color': 'qqq', 'size': 'zxc'}, \
         "в поле data изменились данные"
+
+
+def test_delete():
+    obj = requests.post("http://objapi.course.qa-practice.com/object",
+                        json={'data': {'color': 'qqq', 'size': 'zxc'}, 'name': 'test666'})
+    delete_obj = requests.delete(f"http://objapi.course.qa-practice.com/object/{obj.json()['id']}")
+    delete_obj_2 = requests.delete(f"http://objapi.course.qa-practice.com/object/{obj.json()['id']}")
+    assert delete_obj.status_code == 200, "неверный статус код"
+    assert delete_obj.text == f"Object with id {obj.json()['id']} successfully deleted"
+    assert delete_obj_2.status_code == 404, "неверный статус код при повторном удалении"
