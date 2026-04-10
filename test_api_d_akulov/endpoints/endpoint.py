@@ -30,12 +30,12 @@ class Endpoint:
 
     @allure.step("Check type name")
     def check_type_name(self):
-        assert type(self.js["name"]) == str, "поле name содержит не str"
+        assert isinstance(self.js["name"], str), "поле name содержит не str"
 
     @allure.step("Check type data")
     def check_type_data(self):
-        assert type(self.js["data"]) == dict, "поле data содержит не dict"
+        assert isinstance(self.js["data"], dict), "поле data содержит не dict"
 
     @allure.step("Check type id")
     def check_type_id(self):
-        assert type(self.js["id"]) == int, "поле id содержит не int"
+        assert isinstance(self.js["id"], int), "поле id содержит не int"
