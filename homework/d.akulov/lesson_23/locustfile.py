@@ -11,7 +11,7 @@ class ObjApi(HttpUser):
 
     @task(1)
     def get_all_obj(self):
-        self.client.get(f"/object")
+        self.client.get("/object")
 
     @task(3)
     def get_one_obj(self):
