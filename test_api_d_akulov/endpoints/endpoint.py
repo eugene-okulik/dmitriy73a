@@ -9,17 +9,6 @@ class Endpoint:
     js = None
     del_obj = None
 
-    @allure.step("Create new obj")
-    def create_new_obj(self, body=None):
-        body = body if body else self.body_in_obj
-        self.response = requests.post(url=self.url, json=body)
-        self.js = self.response.json() if self.response.status_code == 200 else None
-        return self.response
-
-    @allure.step("Delete obj")
-    def delete_obj(self):
-        self.del_obj = requests.delete(f"http://objapi.course.qa-practice.com/object/{self.js['id']}")
-
     @allure.step("Check status code 200")
     def check_response_status_code(self):
         assert self.response.status_code == 200, "неверный статус код, ожидали 200"

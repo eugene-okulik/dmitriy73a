@@ -5,9 +5,9 @@ import allure
 
 class PatchObj(Endpoint):
     @allure.step("Make changes in obj, method patch")
-    def make_changes_in_obj(self, body=None):
+    def make_changes_in_obj(self, id_item, body=None):
         body = body if body else {'name': 'test888'}
-        self.response = requests.patch(url=f"{self.url}/{self.js['id']}", json=body)
+        self.response = requests.patch(url=f"{self.url}/{id_item}", json=body)
         self.js = self.response.json() if self.response.status_code == 200 else self.js
         return self.response
 
