@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 
 
 def test_task2(driver_chrome):
@@ -25,6 +26,16 @@ def test_task2(driver_chrome):
 
     phone = driver_chrome.find_element(By.ID, 'userNumber')
     phone.send_keys('1234567890')
+
+    date_of_birth = driver_chrome.find_element(By.ID, 'dateOfBirthInput')
+    driver_chrome.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", date_of_birth)
+    driver_chrome.execute_script("arguments[0].click();", date_of_birth)
+    select = Select(driver_chrome.find_element(By.CLASS_NAME, 'react-datepicker__month-select'))
+    select.select_by_visible_text("December")
+    select = Select(driver_chrome.find_element(By.CLASS_NAME, 'react-datepicker__year-select'))
+    select.select_by_visible_text("1900")
+    date = driver_chrome.find_element(By.CSS_SELECTOR, '.react-datepicker__day.react-datepicker__day--010')
+    date.click()
 
     subjects = driver_chrome.find_element(By.ID, 'subjectsInput')
     subjects.send_keys("Maths")

@@ -9,7 +9,6 @@ def test_task3_1(driver_chrome):
     dropdown = driver_chrome.find_element(By.ID, "id_choose_language")
     select = Select(dropdown)
     select.select_by_visible_text("C#")
-    dropdown.click()
     driver_chrome.find_element(By.ID, "submit-id-submit").click()
     assert driver_chrome.find_element(By.ID, "result-text").text == "C#"
 
