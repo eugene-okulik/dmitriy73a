@@ -1,0 +1,20 @@
+Go to first line in file: g
+Go to last line in file: G
+Forward one window: z
+Forward one line: e
+Backward one line: y
+Search forward for matching line: /что ищем вперед
+Search backward for matching line: ?что ищем назад
+Repeat previous search: n
+Repeat previous search in reverse direction: N
+
+
+/dev/null символьное устройство
+/dev/zero символьное устройство
+/dev/sda нет такого)
+/dev/tty символьное устройство
+/root каталог/директория/папка
+/etc/passwd файл обычный
+/proc/mounts символьная ссылка(ярлык)
+/bin/ls файл обычный
+/bin/zcat файл обычный
