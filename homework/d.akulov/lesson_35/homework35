@@ -1,0 +1,10 @@
+в тг не удалось достучаться закину тут)
+не понятно что именно надо было заскринить но вроде работает
+https://disk.yandex.ru/i/KwJJEbCkSksmZA
+https://disk.yandex.ru/i/YHiSHIQXmL1E3g
+
+в процессе возникли проблемы, падала ошибка
+https://disk.yandex.ru/i/8vvdkgwLPo2XBA
+
+благо ии лучше меня в этом всем шарит, проблема с "apt-key больше нет в Debian Trixie (на котором основан свежий Jenkins image)"
+предложил переписать Dockerfile, файл в тг
